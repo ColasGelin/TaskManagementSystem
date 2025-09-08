@@ -13,5 +13,5 @@ if [ "$DJANGO_DEBUG" != "True" ]; then
     python manage.py collectstatic --noinput --clear
 fi
 
-echo "Starting Django development server..."
-python manage.py runserver 0.0.0.0:8000
+echo "Starting application..."
+exec "$@"
