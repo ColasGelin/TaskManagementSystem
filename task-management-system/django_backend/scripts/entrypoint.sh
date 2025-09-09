@@ -4,10 +4,13 @@ set -e
 echo "Waiting for database..."
 python manage.py check --database default
 
+echo "Creating migrations..."
+python manage.py makemigrations users
+python manage.py makemigrations
+
 echo "Running migrations..."
 python manage.py migrate --noinput
 
-# Only collect static files if not in debug mode
 if [ "$DJANGO_DEBUG" != "True" ]; then
     echo "Collecting static files..."
     python manage.py collectstatic --noinput --clear
